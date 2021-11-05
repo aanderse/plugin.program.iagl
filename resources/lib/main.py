@@ -201,10 +201,10 @@ class iagl_addon(object):
 			#Default Values
 			self.defaults = dict()
 			self.settings = dict()
-			self.defaults['thumb'] = 'special://home/addons/plugin.program.iagl/resources/skins/Default/media/default_thumb.jpg'
-			self.defaults['banner'] = 'special://home/addons/plugin.program.iagl/resources/skins/Default/media/default_banner.jpg'
-			self.defaults['icon'] = 'special://home/addons/plugin.program.iagl/resources/skins/Default/media/icon.png'
-			self.defaults['fanart'] = 'special://home/addons/plugin.program.iagl/fanart.jpg'
+			self.defaults['thumb'] = ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/default_thumb.jpg'
+			self.defaults['banner'] = ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/default_banner.jpg'
+			self.defaults['icon'] = ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/icon.png'
+			self.defaults['fanart'] = ADDON_HANDLE.getAddonInfo('path') + '/fanart.jpg'
 			self.game_list_context_menu_items = dict()
 			self.game_list_context_menu_items['defaults'] = [(loc_str(30406),'RunPlugin(plugin://plugin.program.iagl/context_menu/action/<game_list_id>/view_list_settings)'),(loc_str(30404),'RunPlugin(plugin://plugin.program.iagl/context_menu/edit/<game_list_id>/emu_launcher)'),(loc_str(30405),'RunPlugin(plugin://plugin.program.iagl/context_menu/select/<game_list_id>/emu_downloadpath)'),(loc_str(30400),'RunPlugin(plugin://plugin.program.iagl/context_menu/select/<game_list_id>/metadata)'),(loc_str(30402),'RunPlugin(plugin://plugin.program.iagl/context_menu/select/<game_list_id>/art)'),(loc_str(30403),'RunPlugin(plugin://plugin.program.iagl/context_menu/edit/<game_list_id>/emu_visibility)'),(loc_str(30407),'RunPlugin(plugin://plugin.program.iagl/context_menu/action/<game_list_id>/refresh_list)')]
 			self.game_list_context_menu_items['external'] = [(loc_str(30408),'RunPlugin(plugin://plugin.program.iagl/context_menu/select/<game_list_id>/emu_ext_launch_cmd)')]

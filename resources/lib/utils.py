@@ -786,11 +786,11 @@ def get_game_stat_set(game_stats_in=None,type_in=None):
 
 def get_history_listitem(media_type='video'):
 	li_dict = {'info':{'genre':loc_str(30600),'plot':loc_str(30601)},
-	'art':{'icon':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/icon.png',
-	'thumb':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/last_played.jpg',
-	'poster':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/last_played.jpg',
-	'banner':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/last_played_banner.jpg',
-	'fanart':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/fanart.jpg'}}
+	'art':{'icon':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/icon.png',
+	'thumb':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/last_played.jpg',
+	'poster':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/last_played.jpg',
+	'banner':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/last_played_banner.jpg',
+	'fanart':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/fanart.jpg'}}
 	li = xbmcgui.ListItem(label=loc_str(30599),offscreen=True)
 	li.setInfo(media_type,li_dict.get('info'))
 	li.setArt(li_dict.get('art'))
@@ -800,27 +800,27 @@ def get_history_listitem(media_type='video'):
 def get_next_page_listitem(current_page,page_count,next_page,total_items,media_type='video'):
 	li = xbmcgui.ListItem(label=loc_str(30602),offscreen=True)
 	li.setInfo(media_type,{'plot':loc_str(30603)%{'current_page':current_page,'page_count':page_count,'next_page':next_page,'total_items':total_items}})
-	li.setArt({'icon':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/next.png','thumb':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/next.png'})
+	li.setArt({'icon':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/next.png','thumb':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/next.png'})
 	li.setProperties({'SpecialSort':'bottom'})
 	return li
 
 def get_blank_favorites_listitem(media_type='video'):
 	li = xbmcgui.ListItem(label=loc_str(30439),offscreen=True)
-	li.setArt({'icon':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/favorites_logo.png',
-				'thumb':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/favorites.png',
-				'poster':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/favorites.png',
-				'banner':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/favorites_banner.png',
-				'fanart':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/fanart.jpg'})
+	li.setArt({'icon':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/favorites_logo.png',
+				'thumb':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/favorites.png',
+				'poster':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/favorites.png',
+				'banner':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/favorites_banner.png',
+				'fanart':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/fanart.jpg'})
 	return li
 
 
 def get_netplay_listitem(media_type='video'):
 	li_dict = {'info':{'genre':loc_str(30004),'plot':loc_str(30598)},
-	'art':{'icon':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_logo.png',
-	'thumb':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_box.jpg',
-	'poster':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_box.jpg',
-	'banner':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_banner.jpg',
-	'fanart':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/fanart.jpg'}}
+	'art':{'icon':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_logo.png',
+	'thumb':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_box.jpg',
+	'poster':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_box.jpg',
+	'banner':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_banner.jpg',
+	'fanart':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/fanart.jpg'}}
 	li = xbmcgui.ListItem(label=loc_str(30004),offscreen=True)
 	li.setInfo(media_type,li_dict.get('info'))
 	li.setArt(li_dict.get('art'))
@@ -1682,11 +1682,11 @@ def map_lobby_listitem_dict(libretro_dict=None,discord_dict=None,filter_lobby=Tr
 						   'genre':split_value(discord_match.get('genre')),
 						   'lastplayed':discord_match.get('timestamp'),
 						   'plot':discord_match.get('description')+'[CR][CR]'+loc_str(30606)%{'username':re_game_tags.sub('',libretro_dict.get('username')).strip(),'country':next(iter([x.get('name') for x in country_codes if x and x.get('alpha-2').lower() == libretro_dict.get('country')]),'Unknown'),'game_name':libretro_dict.get('game_name'),'pp':libretro_dict.get('has_password'),'spectate':next(iter([not x for x in [libretro_dict.get('has_spectate_password')] if isinstance(x,bool)]),False),'core_name':libretro_dict.get('core_name'),'core_version':libretro_dict.get('core_version'),'frontend':libretro_dict.get('frontend')}},
-			    'art':{'icon':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_logo.png',
-					  'thumb':choose_image(discord_match.get('image'),'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_box.jpg'),
-					  'poster':choose_image(discord_match.get('image'),'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_box.jpg'),
-					  'banner':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_banner.jpg',
-					  'fanart':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/fanart.jpg'},
+			    'art':{'icon':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_logo.png',
+					  'thumb':choose_image(discord_match.get('image'),ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_box.jpg'),
+					  'poster':choose_image(discord_match.get('image'),ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_box.jpg'),
+					  'banner':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_banner.jpg',
+					  'fanart':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/fanart.jpg'},
 				'properties': {'route':discord_match.get('route'),
 							   'query': json.dumps(current_query)},
 				}
@@ -1702,11 +1702,11 @@ def map_lobby_listitem_dict(libretro_dict=None,discord_dict=None,filter_lobby=Tr
 						   'credits':re_game_tags.sub('',libretro_dict.get('username')).strip(),
 						   'lastplayed':libretro_dict.get('created'),
 						   'plot':loc_str(30606)%{'username':re_game_tags.sub('',libretro_dict.get('username')).strip(),'country':next(iter([x.get('name') for x in country_codes if x and x.get('alpha-2').lower() == libretro_dict.get('country')]),'Unknown'),'game_name':libretro_dict.get('game_name'),'pp':libretro_dict.get('has_password'),'spectate':next(iter([not x for x in [libretro_dict.get('has_spectate_password')] if isinstance(x,bool)]),False),'core_name':libretro_dict.get('core_name'),'core_version':libretro_dict.get('core_version'),'frontend':libretro_dict.get('frontend')}},
-			    'art':{'icon':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_logo.png',
-					  'thumb':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_box.jpg',
-					  'poster':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_box.jpg',
-					  'banner':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/netplay_banner.jpg',
-					  'fanart':'special://home/addons/plugin.program.iagl/resources/skins/Default/media/fanart.jpg'},
+			    'art':{'icon':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_logo.png',
+					  'thumb':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_box.jpg',
+					  'poster':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_box.jpg',
+					  'banner':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/netplay_banner.jpg',
+					  'fanart':ADDON_HANDLE.getAddonInfo('path') + '/resources/skins/Default/media/fanart.jpg'},
 				'properties': {'route':'game_search?query=%(query)s'%{'query':url_quote_query(libretro_dict)},
 							   'query': json.dumps(current_query)},
 				}
